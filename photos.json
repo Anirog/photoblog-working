@@ -1,0 +1,38 @@
+[
+  {
+    "imagePath": "images/IMG_2955.jpg",
+    "title": "Test Title",
+    "date": "2025-05-08",
+    "aperture": "\u0192/2.2",
+    "camera": "Apple iPhone 6s",
+    "shutter": "1/126",
+    "iso": "25"
+  },
+  {
+    "imagePath": "images/IMG_0012-2.JPG",
+    "title": "Lucky",
+    "date": "2025-05-08",
+    "aperture": "\u0192/4",
+    "camera": "Canon EOS 5D",
+    "shutter": "1/15",
+    "iso": "3200"
+  },
+  {
+    "imagePath": "images/P1020015.jpg",
+    "title": "Wood Carving",
+    "date": "2025-05-08",
+    "aperture": "\u0192/2.8",
+    "camera": "Canon EOS 5D",
+    "shutter": "1/50",
+    "iso": "100"
+  },
+  {
+    "imagePath": "images/P1020014.jpg",
+    "title": "Flower",
+    "date": "2025-05-08",
+    "aperture": "\u0192/2.8",
+    "camera": "Panasonic DMC-FX10",
+    "shutter": "1/125",
+    "iso": "100"
+  }
+]

@@ -1,0 +1,28 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+#upload-container {
+    margin-bottom: 20px;
+}
+
+#image-preview-container,
+#thumbnail-preview-container {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: inline-block;
+}
+
+#exif-data {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.thumbnail {
+    width: 256px;
+    height: 256px;
+    object-fit: cover;
+}

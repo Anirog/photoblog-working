@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photoblog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% if generate_static %}static/css/styles.css{% else %}{{ url_for('static', filename='css/styles.css') }}{% endif %}">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header-container">
+
+            <div class="profile-image-container">
+                <img class="profile-image" src="{% if generate_static %}static/images/larrie-knights.jpg{% else %}{{ url_for('static', filename='images/larrie-knights.jpg') }}{% endif %}" alt="">
+            </div>
+
+            <div class="menu-container">
+                <i class="ph ph-list"></i>
+                <nav class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Browse</a>
+                    <a href="#">Contact</a>
+                    <a href="#">About</a>
+                </nav>
+            </div>
+
+        </div>
+
+        <div class="h1-container">
+            <h1 class="h1-text">one to be taken daily <span class="photoblog-text">photoblog</span></h1>
+        </div>
+
+        <div class="image-container">
+            {% if photos %}
+            <img src="{% if generate_static %}static/{{ photos[current_index].imagePath }}{% else %}{{ url_for('static', filename=photos[current_index].imagePath) }}{% endif %}" alt="{{ photos[current_index].title }}">
+            {% else %}
+            <img src="{% if generate_static %}static/images/image1-min.jpg{% else %}{{ url_for('static', filename='images/image1-min.jpg') }}{% endif %}" alt="Default Image">
+            {% endif %}
+        </div>
+
+        <div class="next-previous-container {% if current_index == 0 %}justify-content-flex-end{% endif %}">
+
+            {% if current_index and current_index > 0 %}
+            <a href="{% if generate_static %}photo{{ current_index - 1 }}.html{% else %}{{ url_for('show_photo', index=current_index - 1) }}{% endif %}">
+                <div class="previous-container">
+
+                    <div class="previous-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffffff" viewBox="0 0 256 256">
+                            <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
+                        </svg>
+                    </div>
+                    <div class="previous-day-text">
+                        Previous day
+
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+
+            {% if current_index is not none and current_index < photos|length - 1 %}
+            <a href="{% if generate_static %}photo{{ current_index + 1 }}.html{% else %}{{ url_for('show_photo', index=current_index + 1) }}{% endif %}">
+                <div class="next-container">
+                    <div class="next-day-text">
+                        Next day
+                    </div>
+                    <div class="next-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffffff" viewBox="0 0 256 256">
+                            <path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+
+        </div>
+
+        <div class="title-date-container">
+            <div class="image-title-container">
+                <div class="image-title-text">
+                    {% if photos %}
+                    {{ photos[current_index].title }}
+                    {% else %}
+                    Image Title
+                    {% endif %}
+                </div>
+            </div>
+            <div class="image-date-container">
+                <div class="image-date-text">
+                    {% if photos %}
+                    {% if photos[current_index].date is datetime %}
+                    {{ photos[current_index].date.strftime("%e %B %Y") }}
+                    {% else %}
+                    {{ photos[current_index].date }}
+                    {% endif %}
+                    {% else %}
+                    25 February 2025
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="camera-lens-exif-container">
+
+            <div class="camera-container">
+                <div class="camera-text">
+                    <span class="camera-text-light">Camera:</span>
+                    {% if photos %}
+                    {{ photos[current_index].camera }}
+                    {% else %}
+                    Canon PowerShot G1 X
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="exif-container">
+                <div class="exif-text">
+                    {% if photos %}
+                    <span class="aperture-text">{{ photos[current_index].aperture }}</span>
+                    <span class="shutter-text">{{ photos[current_index].shutter }}</span>
+                    <span>ISO {{ photos[current_index].iso }}</span>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-container">
+            <div class="footer-text">
+                © <a class="footer-link-text" href="">Larrie Knights</a> 2025 <span class="phone">(phone)</span><span
+                    class="tablet">(tablet)</span><span class="desktop">(desktop)</span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

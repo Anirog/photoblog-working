@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Photoblog Uploader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="upload-container">
+        <h2>Upload an Image</h2>
+        <input type="file" id="image-upload" accept="image/*">
+    </div>
+
+    <div id="image-preview-container" style="display: none;">
+        <h2>Image Preview</h2>
+        <img id="uploaded-image" style="max-width: 512px; max-height: 512px;">
+    </div>
+
+    <div id="exif-data" style="display: none;">
+        <h2>EXIF Data</h2>
+        <pre id="exif-output"></pre>
+    </div>
+
+    <div id="thumbnail-preview-container" style="display: none;">
+        <h2>Thumbnail Preview</h2>
+        <canvas id="thumbnail-canvas" class="thumbnail"></canvas>
+    </div>
+
+    <script src="exif.js"></script>
+    <script src="uploader.js"></script>
+</body>
+
+</html>

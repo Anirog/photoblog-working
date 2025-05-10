@@ -1,0 +1,320 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.phone {
+  display: inline-block;
+}
+
+.tablet {
+  display: none;
+
+}
+
+.desktop {
+  display: none;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  background-color: #202124;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.container {
+  max-width: 1096px;
+  margin: 0 auto;
+}
+
+a {
+  transition: all 150ms ease-in-out;
+}
+
+.next-previous-container a {
+  text-decoration: none;
+}
+
+.previous-day-text,
+.next-day-text {
+  transition: all 150ms ease-in-out;
+}
+
+.previous-day-text:hover,
+.next-day-text:hover {
+  color: #cccccc;
+}
+
+.header-container {
+  margin: 16px 16px 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-container {
+  margin-left: 16px;
+}
+
+.nav-links {
+  display: none;
+  gap: 32px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.ph-list {
+  font-size: 24px;
+  color: #cccccc;
+}
+
+.profile-image {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.h1-container {
+  margin-bottom: 16px;
+}
+
+.h1-text {
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+
+.photoblog-text {
+  color: #bdbdbd;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.next-previous-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 16px 18px 16px;
+}
+
+.previous-arrow {
+  margin-right: 4px;
+}
+
+.next-arrow {
+  margin-left: 4px;
+}
+
+.previous-day-text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.next-day-text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.previous-container {
+  display: flex;
+  align-items: center;
+}
+
+.next-container {
+  display: flex;
+  align-items: center;
+}
+
+.image-title-container {
+  margin-bottom: 18px;
+}
+
+.image-title-text {
+  text-align: center;
+  color: #9b9b9b;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.image-date-container {
+  margin-bottom: 18px;
+}
+
+.image-date-text {
+  text-align: center;
+  color: #9b9b9b;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.camera-container {
+  margin-bottom: 18px;
+}
+
+.camera-text {
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.camera-text-light {
+  color: #d8d8d8;
+  font-weight: 300;
+}
+
+.exif-container {
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.exif-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.aperture-text {
+  margin-right: 52px;
+}
+
+.shutter-text {
+  margin-right: 52px;
+}
+
+.footer-container {
+  margin-bottom: 28px;
+}
+
+.footer-text {
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.footer-link-text {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-link-text:hover {
+  color: #cccccc;
+}
+
+.justify-content-flex-end {
+  justify-content: flex-end;
+}
+
+/* Media Queries Start */
+
+/* Tablet 768px and up  */
+@media (min-width: 48em) {
+  .tablet {
+    display: inline-block;
+  }
+
+  .phone {
+    display: none;
+  }
+  
+  .desktop {
+    display: none;
+  }
+
+  .menu-container i {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover {
+    color: #cccccc;
+  }
+
+  .h1-text {
+    font-size: 44px;
+  }
+
+  .previous-day-text {
+    font-size: 24px;
+  }
+
+  .next-day-text {
+    font-size: 24px;
+  }
+
+  .title-date-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 16px 0 16px;
+  }
+
+  .camera-lens-exif-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 16px 40px 16px;
+  }
+
+  .camera-container, .lens-container, .exif-container {
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop 1440px and up */
+@media (min-width: 90em) {
+  .h1-text {
+    font-size: 68px;
+  }
+
+  .desktop {
+    display: inline-block;
+  }
+  
+  .tablet {
+    display: none;
+  }
+  
+  .phone {
+    display: none;
+  }
+}
+
+/* Media Queries End */

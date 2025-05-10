@@ -1,0 +1,15 @@
+.DS_Store
+Icon
+Zold/
+.vscode/
+sandbox/
+Icon?
+
+# Python-specific ignores
+venv/
+*.pyc
+__pycache__/
+*.sqlite3
+
+# Flask-specific ignores
+instance/

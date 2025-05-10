@@ -1,6 +1,6 @@
 [
   {
-    "imagePath": "images/IMG_2955.jpg",
+    "imagePath": "images/IMG_2955-min.jpg",
     "title": "Test Title",
     "date": "2025-05-08",
     "aperture": "\u0192/2.2",
@@ -9,7 +9,7 @@
     "iso": "25"
   },
   {
-    "imagePath": "images/IMG_0012-2.JPG",
+    "imagePath": "images/IMG_0012-min.JPG",
     "title": "Lucky",
     "date": "2025-05-08",
     "aperture": "\u0192/4",
@@ -18,7 +18,7 @@
     "iso": "3200"
   },
   {
-    "imagePath": "images/P1020015.jpg",
+    "imagePath": "images/P1020015-min.jpg",
     "title": "Wood Carving",
     "date": "2025-05-08",
     "aperture": "\u0192/2.8",
@@ -27,12 +27,21 @@
     "iso": "100"
   },
   {
-    "imagePath": "images/P1020014.jpg",
+    "imagePath": "images/P1020014-min.jpg",
     "title": "Flower",
     "date": "2025-05-08",
     "aperture": "\u0192/2.8",
     "camera": "Panasonic DMC-FX10",
     "shutter": "1/125",
     "iso": "100"
+  },
+  {
+    "imagePath": "images/DSCF1099-min.jpg",
+    "title": "Mishell",
+    "date": "2025-05-10",
+    "aperture": "\u0192/4",
+    "camera": "Fujifilm X100S",
+    "shutter": "1/550",
+    "iso": "800"
   }
 ]

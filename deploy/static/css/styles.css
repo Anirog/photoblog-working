@@ -293,7 +293,7 @@ img {
     margin: 0 16px 40px 16px;
   }
 
-  .camera-container, .exif-container {
+  .camera-container, .lens-container, .exif-container {
     margin-bottom: 0;
   }
 }

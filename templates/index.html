@@ -1,9 +1,10 @@
+/photoblog-working/templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=width, initial-scale=1.0">
     <title>Photoblog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,10 +113,10 @@
             <div class="camera-container">
                 <div class="camera-text">
                     <span class="camera-text-light">Camera:</span>
-                    {% if photos %}
+                    {% if photos and photos[current_index]['camera'] %}
                     {{ photos[current_index]['camera'] }}
                     {% else %}
-                    Canon PowerShot G1 X
+                    Unknown Camera
                     {% endif %}
                 </div>
             </div>
@@ -123,9 +124,9 @@
             <div class="exif-container">
                 <div class="exif-text">
                     {% if photos %}
-                    <span class="aperture-text">{{ photos[current_index]['aperture'] }}</span>
-                    <span class="shutter-text">{{ photos[current_index]['shutter'] }}</span>
-                    <span>ISO {{ photos[current_index]['iso'] }}</span>
+                    <span class="aperture-text">{% if photos[current_index]['aperture'] %}f/{{ photos[current_index]['aperture'] }}{% endif %}</span>
+                    <span class="shutter-text">{% if photos[current_index]['shutter'] %}{{ photos[current_index]['shutter'] }}{% endif %}</span>
+                    <span>{% if photos[current_index]['iso'] %}ISO {{ photos[current_index]['iso'] }}{% endif %}</span>
                     {% else %}
                     {% endif %}
                 </div>

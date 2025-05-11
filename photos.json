@@ -1,19 +1,19 @@
 [
   {
-    "imagePath": "images/uploads/P1020014.jpg",
-    "title": "Flower",
-    "date": "",
-    "aperture": "",
-    "camera": "",
-    "shutter": "",
-    "iso": ""
+    "imagePath": "images/uploads/DSCF1099.jpg",
+    "title": "Mishell",
+    "date": "2023-10-01",
+    "aperture": "8",
+    "camera": "Fujifilm X100S",
+    "shutter": "1/500",
+    "iso": "800"
   },
   {
-    "imagePath": "images/uploads/IMG_2955.jpg",
-    "title": "Eyes",
+    "imagePath": "images/uploads/IMG_0012-2.jpg",
+    "title": "",
     "date": "",
     "aperture": "",
-    "camera": "",
+    "camera": "Canon",
     "shutter": "",
     "iso": ""
   }

@@ -20,19 +20,19 @@
             <input type="text" name="title" id="title"><br><br>
 
             <label for="date">Date:</label>
-            <input type="date" name="date" id="date"><br><br>
+            <input type="text" name="date" id="date" value="{{ date }}" readonly><br><br>
 
             <label for="camera">Camera:</label>
-            <input type="text" name="camera" id="camera"><br><br>
+            <input type="text" name="camera" id="camera" value="{{ camera }}" readonly><br><br>
 
             <label for="aperture">Aperture:</label>
-            <input type="text" name="aperture" id="aperture"><br><br>
+            <input type="text" name="aperture" id="aperture" value="{{ aperture }}" readonly><br><br>
 
             <label for="shutter">Shutter Speed:</label>
-            <input type="text" name="shutter" id="shutter"><br><br>
+            <input type="text" name="shutter" id="shutter" value="{{ shutter }}" readonly><br><br>
 
             <label for="iso">ISO:</label>
-            <input type="text" name="iso" id="iso"><br><br>
+            <input type="text" name="iso" id="iso" value="{{ iso }}" readonly><br><br>
 
             <button type="submit">Upload</button>
         </form>

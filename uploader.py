@@ -3,6 +3,8 @@ import os
 import json
 import shutil  # Import the shutil module
 from datetime import datetime
+from PIL import Image  # Import the Pillow library
+from PIL.ExifTags import TAGS
 
 app = Flask(__name__)  # Remove template_folder='.'
 UPLOAD_FOLDER = 'static/images/uploads'  # Update this line
@@ -17,6 +19,32 @@ os.makedirs(DEPLOY_DIR, exist_ok=True)  # Ensure the deploy directory exists
 
 # Add a custom test to Jinja2 environment
 app.jinja_env.tests['datetime'] = lambda obj: isinstance(obj, datetime)
+
+def get_exif_data(image_path):
+    """Extracts EXIF data from an image using Pillow."""
+    try:
+        image = Image.open(image_path)
+        exif = image.getexif()
+        if exif:
+            exif_data = {}
+            for tag_id, tag in TAGS.items():
+                if tag_id in exif:
+                    # Convert EXIF values to strings
+                    value = exif[tag_id]
+                    if isinstance(value, bytes):
+                        try:
+                            value = value.decode('utf-8')
+                        except UnicodeDecodeError:
+                            value = str(value)  # Fallback to string representation
+                    else:
+                        value = str(value)
+                    exif_data[tag] = value
+            return exif_data
+        else:
+            return None
+    except Exception as e:
+        print(f"Error extracting EXIF data: {e}")
+        return None
 
 def generate_static_site():
     """Generates static HTML files for each photo."""
@@ -121,7 +149,7 @@ def index():
 
 @app.route('/admin/upload')
 def admin_upload_form():
-    return render_template('upload.html')  # Serve the upload form
+    return render_template('upload.html', camera='', aperture='', shutter='', iso='', date='')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -133,14 +161,30 @@ def upload_file():
     filepath = os.path.join(UPLOAD_FOLDER, filename)
     file.save(filepath)
 
+    # Extract EXIF data using Pillow
+    exif_data = get_exif_data(filepath)
+    if exif_data:
+        camera = exif_data.get('Make', '')  # Camera Make
+        aperture = exif_data.get('ApertureValue', '')  # Aperture Value
+        shutter = exif_data.get('ExposureTime', '')  # Exposure Time
+        iso = exif_data.get('ISOSpeedRatings', '')  # ISO Speed Ratings
+        date_taken_obj = exif_data.get('DateTimeOriginal')
+        date_taken = date_taken_obj.strftime('%Y-%m-%d') if date_taken_obj else ''
+    else:
+        camera = ''
+        aperture = ''
+        shutter = ''
+        iso = ''
+        date_taken = ''
+
     photo = {
         'imagePath': f'images/uploads/{filename}',
         'title': request.form.get('title', ''),
-        'date': request.form.get('date', datetime.now().strftime('%Y-%m-%d')),
-        'aperture': request.form.get('aperture', ''),
-        'camera': request.form.get('camera', ''),
-        'shutter': request.form.get('shutter', ''),
-        'iso': request.form.get('iso', '')
+        'date': date_taken,
+        'aperture': aperture,
+        'camera': camera,
+        'shutter': shutter,
+        'iso': iso
     }
 
     photos_list = []
@@ -156,7 +200,7 @@ def upload_file():
     with open(JSON_FILE, 'w') as f:
         json.dump(photos_list, f, indent=2)
 
-    return jsonify({'message': 'Upload successful'}), 200
+    return render_template('upload.html', camera=camera, aperture=aperture, shutter=shutter, iso=iso, date=date_taken)
 
 @app.route('/photo/<int:index>')
 def show_photo(index):

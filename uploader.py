@@ -5,12 +5,12 @@ import shutil  # Import the shutil module
 from datetime import datetime
 
 app = Flask(__name__)  # Remove template_folder='.'
-UPLOAD_FOLDER = 'static/images'  # Update this line
+UPLOAD_FOLDER = 'static/images/uploads'  # Update this line
 JSON_FILE = 'photos.json'
 DEPLOY_DIR = 'deploy'  # Rename the output directory
 
 app.config['ENV'] = 'development'  # Set the environment to development
-app.debug = True
+app.debug = True  # Disable debug mode for production
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(DEPLOY_DIR, exist_ok=True)  # Ensure the deploy directory exists
@@ -45,8 +45,9 @@ def generate_static_site():
     os.makedirs(deploy_image_dir, exist_ok=True)  # Recreate the directory
 
     # Copy the profile image
-    profile_image_src = os.path.join('static', 'images', 'larrie-knights.jpg')
-    profile_image_dest = os.path.join(DEPLOY_DIR, 'static', 'images', 'larrie-knights.jpg')
+    profile_image_src = os.path.join('static', 'images/site', 'larrie-knights.jpg')
+    profile_image_dest = os.path.join(DEPLOY_DIR, 'static', 'images', 'site', 'larrie-knights.jpg')
+    os.makedirs(os.path.dirname(profile_image_dest), exist_ok=True)  # Ensure the directory exists
     if os.path.exists(profile_image_src):
         shutil.copy(profile_image_src, profile_image_dest)
         print(f"Copied '{profile_image_src}' to '{profile_image_dest}'")
@@ -133,7 +134,7 @@ def upload_file():
     file.save(filepath)
 
     photo = {
-        'imagePath': f'images/{filename}',
+        'imagePath': f'images/uploads/{filename}',
         'title': request.form.get('title', ''),
         'date': request.form.get('date', datetime.now().strftime('%Y-%m-%d')),
         'aperture': request.form.get('aperture', ''),

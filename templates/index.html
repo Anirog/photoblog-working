@@ -18,7 +18,7 @@
         <div class="header-container">
 
             <div class="profile-image-container">
-                <img class="profile-image" src="{% if generate_static %}static/images/larrie-knights.jpg{% else %}{{ url_for('static', filename='images/larrie-knights.jpg') }}{% endif %}" alt="">
+                <img class="profile-image" src="{% if generate_static %}static/images/site/larrie-knights.jpg{% else %}{{ url_for('static', filename='images/site/larrie-knights.jpg') }}{% endif %}" alt="">
             </div>
 
             <div class="menu-container">
@@ -39,9 +39,9 @@
 
         <div class="image-container">
             {% if photos %}
-            <img src="{% if generate_static %}static/{{ photos[current_index].imagePath }}{% else %}{{ url_for('static', filename=photos[current_index].imagePath) }}{% endif %}" alt="{{ photos[current_index].title }}">
+            <img src="{% if generate_static %}static/{{ photos[current_index]['imagePath'] }}{% else %}{{ url_for('static', filename=photos[current_index]['imagePath']) }}{% endif %}" alt="{{ photos[current_index]['title'] }}">
             {% else %}
-            <img src="{% if generate_static %}static/images/image1-min.jpg{% else %}{{ url_for('static', filename='images/image1-min.jpg') }}{% endif %}" alt="Default Image">
+            <img src="{% if generate_static %}static/images/site/image1-min.jpg{% else %}{{ url_for('static', filename='images/site/image1-min.jpg') }}{% endif %}" alt="Default Image">
             {% endif %}
         </div>
 
@@ -86,7 +86,7 @@
             <div class="image-title-container">
                 <div class="image-title-text">
                     {% if photos %}
-                    {{ photos[current_index].title }}
+                    {{ photos[current_index]['title'] }}
                     {% else %}
                     Image Title
                     {% endif %}
@@ -95,13 +95,13 @@
             <div class="image-date-container">
                 <div class="image-date-text">
                     {% if photos %}
-                    {% if photos[current_index].date is datetime %}
-                    {{ photos[current_index].date.strftime("%e %B %Y") }}
+                        {% if photos[current_index]['date'] is datetime %}
+                            {{ photos[current_index]['date'].strftime("%e %B %Y") }}
+                        {% else %}
+                            {{ photos[current_index]['date'] }}
+                        {% endif %}
                     {% else %}
-                    {{ photos[current_index].date }}
-                    {% endif %}
-                    {% else %}
-                    25 February 2025
+                        25 February 2025
                     {% endif %}
                 </div>
             </div>
@@ -113,7 +113,7 @@
                 <div class="camera-text">
                     <span class="camera-text-light">Camera:</span>
                     {% if photos %}
-                    {{ photos[current_index].camera }}
+                    {{ photos[current_index]['camera'] }}
                     {% else %}
                     Canon PowerShot G1 X
                     {% endif %}
@@ -123,9 +123,9 @@
             <div class="exif-container">
                 <div class="exif-text">
                     {% if photos %}
-                    <span class="aperture-text">{{ photos[current_index].aperture }}</span>
-                    <span class="shutter-text">{{ photos[current_index].shutter }}</span>
-                    <span>ISO {{ photos[current_index].iso }}</span>
+                    <span class="aperture-text">{{ photos[current_index]['aperture'] }}</span>
+                    <span class="shutter-text">{{ photos[current_index]['shutter'] }}</span>
+                    <span>ISO {{ photos[current_index]['iso'] }}</span>
                     {% else %}
                     {% endif %}
                 </div>

@@ -11,7 +11,7 @@ document.getElementById('image-upload').addEventListener('change', function (eve
             // Extract EXIF data
             EXIF.getData(file, function () {
                 const exif = EXIF.getAllTags(this);
-                displayExifData(exif, file.name);
+                displayExifData(exif);
                 generateThumbnail(imageUrl);
             });
         }
@@ -24,16 +24,12 @@ document.getElementById('image-upload').addEventListener('change', function (eve
     }
 });
 
-function displayExifData(exif, filename) {
-    document.getElementById('exif-data').style.display = 'block';
-
-    document.getElementById('camera').value = exif['Make'] ? `${exif['Make']} ${exif['Model'] || ''}` : '';
-    document.getElementById('lens').value = exif['LensMake'] ? `${exif['LensMake']} ${exif['LensModel'] || ''}` : '';
-
-    const aperture = exif['FNumber'] ? `ƒ/${eval(exif['FNumber'])}` : '';
-    document.getElementById('aperture').value = aperture;
-
-    let shutterSpeed = '';
+function displayExifData(exif) {
+    const exifOutput = document.getElementById('exif-output');
+    let output = '';
+    if (exif['Make']) output += `Camera: ${exif['Make']} ${exif['Model'] || ''}\n`;
+    if (exif['LensMake']) output += `Lens: ${exif['LensMake']} ${exif['LensModel'] || ''}\n`;
+    if (exif['FNumber']) output += `Aperture: f/${eval(exif['FNumber'])}\n`;
     if (exif['ExposureTime']) {
         const exposureTime = parseFloat(exif['ExposureTime']);
         if (exposureTime < 1 && exposureTime > 0) {
@@ -45,15 +41,20 @@ function displayExifData(exif, filename) {
                 numerator++;
                 denominator = 1 / (exposureTime / numerator);
             }
-            shutterSpeed = `1/${Math.round(denominator)}`;
+            output += `Shutter Speed: 1/${Math.round(denominator)}\n`;
         } else {
-            shutterSpeed = `${exposureTime} s`;
+            output += `Shutter Speed: ${exposureTime} s\n`;
         }
     }
-    document.getElementById('shutter').value = shutterSpeed;
+    if (exif['ISOSpeedRatings']) output += `ISO: ${exif['ISOSpeedRatings']}\n`;
 
-    document.getElementById('iso').value = exif['ISOSpeedRatings'] || '';
-    document.getElementById('imagePath').value = `images/${filename}`;
+    if (output) {
+        exifOutput.textContent = output;
+        document.getElementById('exif-data').style.display = 'block';
+    } else {
+        exifOutput.textContent = 'No relevant EXIF data found.';
+        document.getElementById('exif-data').style.display = 'block';
+    }
 }
 
 function generateThumbnail(imageUrl) {
